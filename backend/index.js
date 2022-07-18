@@ -2,6 +2,9 @@ import express from "express";
 import { mongoDbConnection } from "./Connection.js";
 import AuthRoutes from "./routes/Auth.js";
 import { errorHandler, notFound } from "./middleWare/errorMiddleware.js";
+import dotenv from "dotenv"
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
