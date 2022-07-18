@@ -4,20 +4,22 @@ import { generateToken } from "../Utils/getToken.js";
 export const userSignUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const newUser = new User({ name, email, password });
+    const newUser = new User({ name, email, password, isAdmin: false });
     const userFromDb = await newUser.save();
     return res.status(200).json({ userFromDb, error: false });
   } catch (err) {
-    throw new Error('sorry');
+    return res
+      .status(401)
+      .json({ error: true, message: "user already exists" });
   }
 };
 
 export const userLogin = async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({email: email});
-    if(user && await user.matchPassword(password)) {
-      res.status(200).json({ user, token : generateToken(user._id) });
-    } else {
-      res.status(401).json({ message: "Invalid email or password" });
-    }
+  const { email, password } = req.body;
+  const user = await User.findOne({ email: email });
+  if (user && (await user.matchPassword(password))) {
+    res.status(200).json({ user, token: generateToken(user._id) });
+  } else {
+    res.status(401).json({ message: "Invalid email or password" });
+  }
 };
