@@ -11,7 +11,9 @@ const PostSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+
     jobDescription: {
+
       type: String,
       required: true,
       trim: true,

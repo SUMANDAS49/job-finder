@@ -1,8 +1,10 @@
 import express from "express";
 import { mongoDbConnection } from "./Connection.js";
 import AuthRoutes from "./routes/Auth.js";
+import PostRoutes from "./routes/Post.js";
+import ApplyRoutes from "./routes/Apply.js";
 import { errorHandler, notFound } from "./middleWare/errorMiddleware.js";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -19,6 +21,8 @@ app.get("/", (req, res) => {
 
 //all routings are done here
 app.use("/auth", AuthRoutes);
+app.use("/post", PostRoutes);
+app.use("/apply", PostRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
