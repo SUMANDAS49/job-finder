@@ -11,6 +11,10 @@ const PostSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: User,
+    },
     jobDiscription: {
       type: String,
       required: true,
