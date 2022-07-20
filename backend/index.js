@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 //all routings are done here
 app.use("/auth", AuthRoutes);
 app.use("/post", PostRoutes);
-app.use("/apply", PostRoutes);
+// app.use("/apply", PostRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

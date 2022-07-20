@@ -11,14 +11,17 @@ const PostSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
 
     jobDescription: {
-
       type: String,
       required: true,
       trim: true,
     },
-    skills: [{ type: { String } }],
+    skills: [{ type: String }],
     salary: {
       type: Number,
     },
@@ -29,4 +32,5 @@ const PostSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Post", PostSchema);
+const Post = mongoose.model("Post", PostSchema);
+export default Post;
