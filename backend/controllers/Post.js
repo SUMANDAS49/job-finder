@@ -52,3 +52,22 @@ export const deleteAjob = async (req, res) => {
     res.status(501).json({msg : 'Not authorized'});
   }
 };
+
+// update a post
+export const updateAjob = async (req, res) => {
+  const job = await Post.findById(req.params.id)
+
+  if(job && job.userId.equals(req.user._id)) {
+    job.company = req.body.company;
+    job.jobTitle = req.body.jobTitle;
+    job.jobDescription = req.body.jobDescription;
+    job.skills = req.body.skills;
+    job.salary = req.body.salary;
+    job.jobType = req.body.jobType;
+
+    const updatedPost = await job.save();
+    res.status(200).json(updatedPost);
+  } else {
+    res.status(501).json({msg : 'Not authorized'});
+  }
+};
