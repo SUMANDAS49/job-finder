@@ -20,6 +20,11 @@ const userModel = new mongoose.Schema({
     required: true,
     default: false,
   },
+  skills: [
+    {
+      type: String,
+    },
+  ],
 });
 
 userModel.methods.matchPassword = async function (enteredPassword) {
