@@ -51,6 +51,7 @@ export const updateUserProfile = async (req, res) => {
   }
 
   let user = await User.findById(userIdToUpdate);
+
   const { name, skills } = req.body;
 
   user.name = name ? name : user.name;
