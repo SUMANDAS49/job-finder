@@ -5,6 +5,8 @@ import Base from './components/core/Base'
 import Nav from './components/core/Nav'
 import Job from './components/jobComponents/jobUtil/Job'
 import Jobs from './components/jobComponents/jobUtil/Jobs'
+import JobCard from './components/jobComponents/jobUtil/JobCard'
+import UpdateJobForm from './components/jobComponents/jobCreator/UpdateJobForm'
 
 const Routing = () => {
   return (
@@ -17,6 +19,8 @@ const Routing = () => {
         </Route>
         <Route path='/job' element={<Job/>}/>
         <Route path='/allJobs' element={<Jobs/>}/>
+        <Route path='/oneJob' element={<JobCard/>}/>
+        <Route path='/updateJob' element={<UpdateJobForm/>}/>
     </Routes>
    </BrowserRouter>
   )
