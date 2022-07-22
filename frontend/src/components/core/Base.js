@@ -1,9 +1,12 @@
-import React from 'react'
-
-const Base = () => {
+import React from "react";
+import Nav from "./Nav.js";
+const Base = ({ children }) => {
   return (
-    <div>Base</div>
-  )
-}
+    <div>
+      <Nav />
+      {children}
+    </div>
+  );
+};
 
-export default Base
+export default Base;

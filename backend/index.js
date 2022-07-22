@@ -4,6 +4,7 @@ import AuthRoutes from "./routes/Auth.js";
 import PostRoutes from "./routes/Post.js";
 import ApplyRoutes from "./routes/Job.js";
 import UserRoutes from "./routes/User.js";
+import cors from "cors";
 import { errorHandler, notFound } from "./middleWare/errorMiddleware.js";
 import dotenv from "dotenv";
 
@@ -11,6 +12,11 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 //connection to mongodb server
 mongoDbConnection();
