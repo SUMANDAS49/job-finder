@@ -4,13 +4,12 @@ import { generateToken } from "../Utils/getToken.js";
 export const userSignUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    console.log(req.body);
     const newUser = new User({ name, email, password, isAdmin: false });
     const userFromDb = await newUser.save();
     return res.status(200).json({ userFromDb, error: false });
   } catch (err) {
-    return res
-      .status(401)
-      .json({ error: true, message: "user already exists" });
+    return res.status(401).json({ error: true, message: err });
   }
 };
 
