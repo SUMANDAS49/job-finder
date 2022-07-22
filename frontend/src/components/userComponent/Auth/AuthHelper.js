@@ -1,5 +1,6 @@
 import { API } from "../../../Backend";
 
+// we have all API calls as well as auth util functions
 export const signUpApiCall = (userData) => {
   return fetch(`${API}/auth/signup`, {
     method: "post",
@@ -16,4 +17,15 @@ export const signUpApiCall = (userData) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+//auth util functions
+
+export const isAuthenticated = () => {
+  if (window.localStorage !== undefined) {
+    if (localStorage.getItem("isAuthenticated") != undefined)
+      return JSON.parse(localStorage.getItem("isAuthenticated"));
+    return false;
+  }
+  return false;
 };
