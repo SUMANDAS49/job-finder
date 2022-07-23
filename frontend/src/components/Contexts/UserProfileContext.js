@@ -5,8 +5,8 @@ export const UserProfileContextProvider = (props) => {
   const [userProfile, setUserProfile] = useState({});
 
   return (
-    <UserProfileContextProvider.Provider value={[userProfile, setUserProfile]}>
+    <UserProfileContext.Provider value={[userProfile, setUserProfile]}>
       {props.children}
-    </UserProfileContextProvider.Provider>
+    </UserProfileContext.Provider>
   );
 };

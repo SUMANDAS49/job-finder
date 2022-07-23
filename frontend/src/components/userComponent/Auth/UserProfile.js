@@ -3,7 +3,7 @@ import { Form, Button, Row, Col, Table } from 'react-bootstrap'
 import 'react-bootstrap-tagsinput/dist/index.css'
 
 
-const UserProfile = ({ history, location }) => {
+const UserProfile = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
