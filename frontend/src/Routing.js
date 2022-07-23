@@ -5,8 +5,9 @@ import Base from "./components/core/Base";
 import Nav from "./components/core/Nav";
 import Job from "./components/jobComponents/jobUtil/Job";
 import Jobs from "./components/jobComponents/jobUtil/Jobs";
-import JobCard from "./components/jobComponents/jobUtil/jobCard";
+import JobCard from "./components/jobComponents/jobUtil/JobCard";
 import UpdateJobForm from "./components/jobComponents/jobCreator/UpdateJobForm";
+import UserProfile from "./components/userComponent/Auth/UserProfile";
 
 const Routing = () => {
   return (
@@ -21,6 +22,7 @@ const Routing = () => {
         <Route path="/allJobs" element={<Jobs />} />
         <Route path="/oneJob" element={<JobCard />} />
         <Route path="/updateJob" element={<UpdateJobForm />} />
+        <Route path="/myProfile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );
