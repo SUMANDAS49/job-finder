@@ -13,9 +13,9 @@ const Routing = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route path="" element={<App />} />
+          {/* <Route path="" element={<App />} />
           <Route path="base" element={<Base />} />
-          <Route path="Nav" element={<Nav />} />
+          <Route path="Nav" element={<Nav />} /> */}
         </Route>
         <Route path="/job" element={<Job />} />
         <Route path="/allJobs" element={<Jobs />} />
