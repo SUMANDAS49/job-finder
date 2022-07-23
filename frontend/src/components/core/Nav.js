@@ -1,15 +1,33 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { isAuthenticated } from "../userComponent/Auth/AuthHelper";
 
 function NavScrollExample() {
+  const [redirectToLoginPage, setRedirectToLoginPage] = useState(false);
+  const redirectHelper = (target) => {
+    return <Navigate to={target} />;
+  };
+
+  const showLogOutConfirmation = () => {
+    window.confirm("Do You want to log out?");
+    if (
+      window.localStorage !== undefined &&
+      window.localStorage.getItem("user") !== undefined
+    ) {
+      window.localStorage.removeItem("user");
+      setRedirectToLoginPage(true);
+    }
+  };
+
   return (
     <Navbar bg="light" expand="lg">
+      {redirectToLoginPage && redirectHelper("/login")}
       <Container fluid>
         <Navbar.Brand href="#">jobfinder.io</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -27,6 +45,25 @@ function NavScrollExample() {
                 >
                   Sign Up
                 </Link>
+              </Nav.Link>
+            )}
+            {!isAuthenticated() && (
+              <Nav.Link>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </Nav.Link>
+            )}
+            {isAuthenticated() && (
+              <Nav.Link
+                onClick={() => {
+                  showLogOutConfirmation();
+                }}
+              >
+                LogOut
               </Nav.Link>
             )}
 

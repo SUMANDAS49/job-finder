@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/esm/Container";
 import { loginApiCall } from "./AuthHelper";
+import { Navigate } from "react-router-dom";
+
 // import { UserProfileContext } from "../../Contexts/UserProfileContext";
 
 const LoginForm = () => {
@@ -16,21 +18,28 @@ const LoginForm = () => {
   const [showMessage, setShowMessage] = useState({
     success: false,
     displayMessage: false,
+    redirectToHome: false,
   });
   // const [userProfile, setUserProfile] = useContext(UserProfileContext);
 
-  const handleSubmit = () => {
+  const redirectTo = (target) => {
+    return <Navigate to={target} />;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     setLoading(true);
     console.log(userData);
     loginApiCall(userData).then((resp) => {
-      console.log(resp);
       if (resp.error) {
         setShowMessage({ success: false, displayMessage: true });
       } else {
         setShowMessage({ success: true, displayMessage: true });
         if (window.localStorage != undefined) {
           localStorage.setItem("user", JSON.stringify(resp));
-          // setUserProfile(resp);
+
+          setShowMessage({ ...showMessage, redirectToHome: true });
         }
       }
       setLoading(false);
@@ -59,6 +68,7 @@ const LoginForm = () => {
 
   return (
     <Base>
+      {showMessage.redirectToHome && redirectTo("/")}
       {showMessage.success && showMessage.displayMessage && successMessage()}
       {showMessage.success == false &&
         showMessage.displayMessage &&
@@ -89,7 +99,7 @@ const LoginForm = () => {
               />
             </Form.Group>
 
-            <Button onClick={() => handleSubmit()} variant="primary">
+            <Button onClick={(e) => handleSubmit(e)} variant="primary">
               Submit
             </Button>
           </Form>

@@ -5,14 +5,29 @@ import SignUpForm from "./components/userComponent/Auth/SignUpForm";
 import PublicRoute from "./utils/PublicRoute";
 import LoginForm from "./components/userComponent/Auth/LoginForm";
 import Home from "./components/core/Home";
+import PrivateRoute from "./utils/PrivateRoute";
 const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/">
           <Route path="" element={<Home />} />
-          <Route path="signup" element={<SignUpForm />} />
-          <Route path="login" element={<LoginForm />} />
+          <Route
+            path="signup"
+            element={
+              <PublicRoute redirectTo={"/"}>
+                <SignUpForm />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute redirectTo={"/"}>
+                <LoginForm />
+              </PublicRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>
