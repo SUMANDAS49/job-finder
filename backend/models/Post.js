@@ -28,9 +28,7 @@ const PostSchema = mongoose.Schema(
     jobType: {
       type: String,
     },
-    appliedUsers: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true },
-    ],
+    appliedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

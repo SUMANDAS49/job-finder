@@ -58,6 +58,26 @@ function NavScrollExample() {
               </Nav.Link>
             )}
             {isAuthenticated() && (
+              <Nav.Link>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/job/create"
+                >
+                  Create Job
+                </Link>
+              </Nav.Link>
+            )}
+            {isAuthenticated() && (
+              <Nav.Link>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/user/profile"
+                >
+                  Profile
+                </Link>
+              </Nav.Link>
+            )}
+            {isAuthenticated() && (
               <Nav.Link
                 onClick={() => {
                   showLogOutConfirmation();
