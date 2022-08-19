@@ -12,7 +12,7 @@ const Profile = () => {
           <h3>Email: {isAuthenticated().user.email}</h3>
           <h3>Id: {isAuthenticated().user._id}</h3>
         </div>
-        <Link to={"/job/created/byuser"}>Job Created By You</Link>
+        <Link to={"/job/created/byuser"}>Job Created By you</Link>
         <Link to={"#"}>Job Applied By You</Link>
       </div>
       ;

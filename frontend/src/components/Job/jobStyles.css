@@ -11,5 +11,14 @@
 .heading{
     font-weight: bold;
     background-color: rgb(35, 43, 49);
-    color: white;
+    color: white !important;
+}
+
+
+/* applicants list item  */
+.applicant-list-item{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none !important;
+    color: black;
 }

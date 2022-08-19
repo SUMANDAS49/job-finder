@@ -25,8 +25,8 @@ const CreatedJobs = () => {
 
   const jobListItem = (job) => {
     return (
-      <Link to={`/job/byId?id=${job._id}`}>
-        <div style={{ textDecoration: "none" }} className="job-list-item">
+      <Link style={{ textDecoration: "none" }} to={`/job/byId?id=${job._id}`}>
+        <div className="job-list-item">
           <div className="job-list-item-column">{job.company}</div>
           <div className="job-list-item-column">{job._id}</div>
           <div className="job-list-item-column">{job.jobType}</div>

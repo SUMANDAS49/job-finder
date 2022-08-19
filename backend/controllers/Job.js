@@ -4,7 +4,9 @@ export const applyJobByJobId = async (req, res) => {
   const { jobId, userId } = req.query;
   const userIdFromJwtDecode = req.user._id;
 
-  if (userId != userIdFromJwtDecode)
+  console.log(req.query);
+
+  if (toString(userId) != toString(userIdFromJwtDecode))
     return res.status(403).json({ error: true, message: "Access Denied" });
 
   try {
