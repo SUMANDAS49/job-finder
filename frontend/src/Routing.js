@@ -11,6 +11,9 @@ import CreateJob from "./components/Job/CreateJob";
 import Profile from "./components/userComponent/Profile/Profile";
 import CreatedJobs from "./components/Job/CreatedJobs";
 import Job from "./components/Job/Job";
+import ApplyJob from "./components/Job/ApplyJob";
+import AppliedUsersList from "./components/Job/AppliedUsersList";
+import OthersProfile from "./components/userComponent/Profile/OthersProfile";
 
 const Routing = () => {
   return (
@@ -70,6 +73,39 @@ const Routing = () => {
           element={
             <PrivateRoute redirectTo={"/login"}>
               <Job />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/job/apply"
+          element={
+            <PrivateRoute redirectTo={"/login"}>
+              <ApplyJob />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user/profile/byId"
+          element={
+            <PrivateRoute redirectTo={"/login"}>
+              <ApplyJob />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/job/applicants"
+          element={
+            <PrivateRoute redirectTo={"/login"}>
+              <AppliedUsersList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile/byUserId"
+          element={
+            <PrivateRoute redirectTo={"/login"}>
+              <OthersProfile />
             </PrivateRoute>
           }
         />

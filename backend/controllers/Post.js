@@ -14,7 +14,7 @@ export const postAJob = async (req, res) => {
     jobType,
   });
 
-  console.log(newPost);
+  // console.log(newPost);
   try {
     const createdPost = await newPost.save();
     res.status(200).json({
@@ -29,24 +29,26 @@ export const postAJob = async (req, res) => {
 // get jobs by job id
 
 export const getPostByPostId = (req, res) => {
-  console.log(req.params.postId);
-  Post.findById(req.params.postId, (err, post) => {
-    if (err) {
-      return res.status(404).json({
-        error: true,
-        message: err,
+  // console.log(req.params.postId);
+  Post.findById(req.params.postId)
+    .populate("appliedUsers")
+    .exec((err, post) => {
+      if (err) {
+        return res.status(404).json({
+          error: true,
+          message: err,
+        });
+      }
+      return res.status(200).json({
+        error: false,
+        post,
       });
-    }
-    return res.status(200).json({
-      error: false,
-      post,
     });
-  });
 };
 
 // fetching all the posts from db
 export const getAllJobs = async (req, res) => {
-  const data = await Post.find({}).populate("userId");
+  const data = await Post.find().populate("userId");
   res.json(data);
 };
 
@@ -54,20 +56,22 @@ export const getAllJobs = async (req, res) => {
 
 export const getPostsByUserId = (req, res) => {
   // console.log(req.params);
-  console.log("hiii");
-  Post.find({ userId: req.params.userId }, (err, postsByUser) => {
-    if (err) {
-      return res.status(404).json({
-        error: true,
-        message: err,
-      });
-    }
+  // console.log("hiii");
+  Post.find({ userId: req.params.userId })
+    .populate("appliedUsers")
+    .exec((err, postsByUser) => {
+      if (err) {
+        return res.status(404).json({
+          error: true,
+          message: err,
+        });
+      }
 
-    return res.status(200).json({
-      error: false,
-      postsByUser,
+      return res.status(200).json({
+        error: false,
+        postsByUser,
+      });
     });
-  });
 };
 
 // search jobs by skill

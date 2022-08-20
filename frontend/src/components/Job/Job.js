@@ -4,12 +4,14 @@ import queryString from "query-string";
 import { getPostByPostId } from "./JobApiHelper";
 import { isAuthenticated } from "../userComponent/Auth/AuthHelper";
 import { Link } from "react-router-dom";
+import ApplyJob from "./ApplyJob";
 
 const Job = () => {
   const [job, setJob] = useState({
     skills: [],
   });
   const [loading, setLoading] = useState(false);
+  const [displayApplyDialogue, setDisplayApplyDialogue] = useState(false);
   useEffect(() => {
     setLoading(true);
     console.log(queryString.parse(window.location.search).id);
@@ -26,19 +28,33 @@ const Job = () => {
   };
   return (
     <Base>
-      {loading && <h1>Loading...</h1>}
-      {!loading && (
+      {displayApplyDialogue && <ApplyJob jobId={job._id} />}
+      {!displayApplyDialogue && loading && <h1>Loading...</h1>}
+      {!loading && !displayApplyDialogue && (
         <div>
           {isCreator(job.userId) && (
             <div>
-              <Link to={`/job/edit?jobId=${job._id}`}>Edit</Link>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={`/job/edit?jobId=${job._id}`}
+              >
+                Edit
+              </Link>
               <Link to={`/job/delete?jobId=${job._id}`}>Delete</Link>
               <Link to={`/job/applicants?jobId=${job._id}`}>
                 See Applicants
               </Link>
             </div>
           )}
-          {!isCreator(job.userId) && <button>Apply</button>}
+          {!isCreator(job.userId) && !displayApplyDialogue && (
+            <button
+              onClick={() => {
+                setDisplayApplyDialogue(true);
+              }}
+            >
+              Apply
+            </button>
+          )}
           <h1>{job.company}</h1>
           <div className="title">{job.jobTitle}</div>
           <div>Job Id: {job._id}</div>

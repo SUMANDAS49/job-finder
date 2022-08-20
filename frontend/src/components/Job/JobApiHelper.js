@@ -48,3 +48,19 @@ export const getPostByPostId = (postId) => {
       console.log(err);
     });
 };
+
+export const applyJobByJobId = (userId, jobId) => {
+  return fetch(`${API}/job/apply?userId=${userId}&jobId=${jobId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${isAuthenticated().token}`,
+      Accept: "application/json",
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
